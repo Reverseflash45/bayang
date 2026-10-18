@@ -84,7 +84,7 @@ function gambarSimulasi() {
   ];
   $("[data-bacaan]").innerHTML =
     isi.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("") +
-    (tanpa ? `<p class="sorot">Hari ini hari tanpa bayangan di ${esc(pilihan.nama)}. Geser jam ke ${teksJam(s.tengah)}.</p>` : "");
+    (tanpa ? `<p class="sorot">${teksTanggal(sim.tanggal)} adalah hari tanpa bayangan di ${esc(pilihan.nama)}. Geser jam ke ${teksJam(s.tengah)}.</p>` : "");
 }
 
 function hentikanPutar() {
