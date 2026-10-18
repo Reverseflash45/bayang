@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bayang — hari tanpa bayangan di daerahmu</title>
+    <meta
+      name="description"
+      content="Dua kali setahun matahari tepat di atas kepala dan bayangan benda tegak menghilang. Cari tanggal dan jamnya untuk 514 kabupaten/kota, lalu lihat bayanganmu bergerak sepanjang hari."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bayang-id.vercel.app/" />
+    <meta property="og:title" content="Bayang — hari tanpa bayangan di daerahmu" />
+    <meta property="og:description" content="Kapan matahari tepat di atas kepalamu? Tanggal dan jam hari tanpa bayangan untuk 514 kabupaten/kota." />
+    <meta property="og:image" content="https://bayang-id.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://bayang-id.vercel.app/" />
+    <meta name="theme-color" content="#f5f1e6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1522" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/ikon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="kepala">
+      <a class="merek" href="/">
+        <svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="9" r="5" class="merek-surya" /><path d="M14 17v9M8 26h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></svg>
+        Bayang
+      </a>
+      <nav><a href="#simulasi">Simulasi</a><a href="#peta">Peta</a><a href="#kenapa">Kenapa?</a><a href="#tentang">Tentang</a></nav>
+    </header>
+
+    <main>
+      <section class="pembuka" aria-labelledby="judul">
+        <p class="label">Hari tanpa bayangan · 514 kabupaten/kota</p>
+        <h1 id="judul">Dua kali setahun, bayanganmu <em>hilang.</em></h1>
+        <p class="lead">
+          Saat matahari tepat di atas kepala, benda yang berdiri tegak tidak punya bayangan. Di Indonesia ini terjadi dua kali
+          setahun, dan tanggal serta jamnya berbeda untuk tiap daerah.
+        </p>
+
+        <form class="cari" id="cari" autocomplete="off">
+          <div class="combo">
+            <label for="daerah" class="sr-only">Kabupaten atau kota</label>
+            <input id="daerah" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="saran" placeholder="Ketik kabupaten atau kota" spellcheck="false" />
+            <ul id="saran" role="listbox" class="saran" hidden></ul>
+          </div>
+        </form>
+
+        <div class="hasil" aria-live="polite">
+          <div class="hasil-utama">
+            <p class="label" data-label-berikutnya>Berikutnya</p>
+            <p class="tanggal-besar" data-tanggal></p>
+            <p class="jam-besar"><span data-jam></span> <span class="hitung" data-hitung></span></p>
+            <p class="lainnya" data-lainnya></p>
+          </div>
+          <div class="hasil-grafik">
+            <p class="judul-grafik" data-judul-grafik></p>
+            <div class="grafik" id="grafik-bayangan" role="img"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bagian" id="simulasi" aria-labelledby="judul-simulasi">
+        <p class="label">Simulasi</p>
+        <h2 id="judul-simulasi">Lihat bayanganmu <em>bergerak</em></h2>
+        <p class="pengantar">
+          Bayangkan tongkat tegak di titik tengah daerahmu, dilihat dari atas. Geser tanggal dan jam: ujung bayangan menyapu
+          lengkung yang berbeda tiap hari, dan pada hari tanpa bayangan lengkung itu melewati kaki tongkat tepat saat tengah
+          hari.
+        </p>
+        <div class="simulasi">
+          <div class="jam-surya" id="jam-surya"></div>
+          <div class="kendali">
+            <p class="nama-sim" data-nama-sim></p>
+            <label class="slider">
+              <span class="label">Tanggal</span>
+              <output data-out-tanggal></output>
+              <input type="range" id="geser-tanggal" min="0" max="364" step="1" />
+            </label>
+            <label class="slider">
+              <span class="label">Jam</span>
+              <output data-out-jam></output>
+              <input type="range" id="geser-jam" min="300" max="1140" step="1" />
+            </label>
+            <div class="tombol-baris">
+              <button type="button" class="tombol" id="putar" aria-pressed="false">▶ Putar sehari</button>
+              <button type="button" class="tombol" id="ke-hari-ini">Hari ini</button>
+              <button type="button" class="tombol" id="ke-tanpa">Hari tanpa bayangan</button>
+            </div>
+            <dl class="bacaan" data-bacaan></dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="bagian" id="peta" aria-labelledby="judul-peta">
+        <p class="label">Seluruh Indonesia</p>
+        <h2 id="judul-peta">Satu matahari, <em>514</em> jadwal</h2>
+        <p class="pengantar" data-pengantar-peta></p>
+        <div class="alat-peta">
+          <div class="pilihan" role="group" aria-label="Yang ditampilkan">
+            <button type="button" data-ukuran="awal" aria-pressed="true">Februari–April</button>
+            <button type="button" data-ukuran="akhir" aria-pressed="false">September–Oktober</button>
+            <button type="button" data-ukuran="terbit" aria-pressed="false">Terbit hari ini</button>
+          </div>
+          <div class="legenda-gradasi" data-legenda></div>
+        </div>
+        <div class="peta" id="peta-indonesia" role="img" aria-label="Peta kabupaten/kota Indonesia diwarnai menurut tanggal hari tanpa bayangan"></div>
+        <p class="catatan" data-catatan-peta></p>
+      </section>
+
+      <section class="bagian" id="kenapa" aria-labelledby="judul-kenapa">
+        <p class="label">Kenapa dua kali?</p>
+        <h2 id="judul-kenapa">Matahari bolak-balik <em>melintasi</em> Indonesia</h2>
+        <p class="pengantar">
+          Karena sumbu Bumi miring 23,4°, titik di Bumi yang tepat di bawah matahari bergeser antara 23,4° LU (Juni) dan 23,4° LS
+          (Desember). Indonesia membentang dari sekitar 11° LS sampai 6° LU, jadi titik itu melintasinya dua kali: ke utara
+          sekitar Februari–April dan kembali ke selatan sekitar September–Oktober.
+        </p>
+        <div class="grafik" id="grafik-deklinasi" role="img"></div>
+      </section>
+
+      <section class="bagian" aria-labelledby="judul-terbit">
+        <p class="label">Terbit dan terbenam</p>
+        <h2 id="judul-terbit">Siang di sini hampir selalu <em>dua belas jam</em></h2>
+        <p class="pengantar" data-pengantar-terbit></p>
+        <div class="kembar">
+          <div><p class="judul-grafik">Matahari terbit</p><div class="grafik" id="grafik-terbit" role="img"></div></div>
+          <div><p class="judul-grafik">Matahari terbenam</p><div class="grafik" id="grafik-terbenam" role="img"></div></div>
+        </div>
+      </section>
+
+      <section class="bagian tentang" id="tentang" aria-labelledby="judul-tentang">
+        <h2 id="judul-tentang">Tentang perhitungan</h2>
+        <ul>
+          <li>
+            Posisi matahari dihitung dengan algoritma NOAA Solar Calculator, yang berdasar pada <i>Astronomical Algorithms</i>
+            karya Jean Meeus. Ketelitiannya sekitar satu menit; semuanya dihitung di peramban, tanpa data dari luar.
+          </li>
+          <li>
+            Hari tanpa bayangan adalah hari ketika deklinasi matahari saat kulminasi paling dekat dengan lintang setempat. Pada
+            jam itu matahari menyimpang kurang dari setengah derajat dari titik zenit, sehingga bayangan benda tegak praktis
+            hilang.
+          </li>
+          <li>
+            Lokasi tiap kabupaten/kota adalah titik tengah wilayahnya (batas wilayah geoBoundaries: BPS, WFP, OCHA ROAP, CC BY
+            3.0 IGO). Di ujung wilayah yang luas, tanggalnya bisa bergeser sehari dan jamnya beberapa menit. Waktu terbit dan
+            terbenam dihitung untuk horizon datar tanpa memperhitungkan ketinggian tempat.
+          </li>
+          <li>
+            Jadwal resmi kulminasi utama untuk kota-kota di Indonesia diterbitkan setiap tahun oleh
+            <a href="https://www.bmkg.go.id/">BMKG</a>.
+          </li>
+          <li><strong>Jangan menatap matahari secara langsung</strong>, juga saat mengamati hari tanpa bayangan. Lihat bayangannya saja.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="kaki">
+      <p>Dibuat oleh Rafi Fernandito · <a href="https://github.com/Reverseflash45/bayang">kode sumber</a></p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
