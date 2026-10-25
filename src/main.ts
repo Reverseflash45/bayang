@@ -1,6 +1,8 @@
-import "@fontsource/young-serif";
-import "@fontsource-variable/manrope";
-import "@fontsource-variable/spline-sans-mono";
+import "@fontsource/syne/700";
+import "@fontsource/syne/800";
+import "@fontsource/karla/400";
+import "@fontsource/karla/500";
+import "@fontsource/karla/700";
 import "./gaya.css";
 import {
   DAERAH,

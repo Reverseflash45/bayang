@@ -1,50 +1,29 @@
 :root {
+  /* siang bolong: kuning silau, bayangan hitam jatuh tegak lurus ke bawah */
   color-scheme: light;
-  --kertas: #f5f1e6;
-  --kertas-2: #ece6d6;
-  --kertas-3: #e2dac6;
-  --tinta: #17233b;
-  --tinta-2: #3f4a60;
-  --samar: #626a78;
-  --garis: #d6cfbd;
-  --garis-kuat: #b3aa94;
-  --surya: #e39a26;
-  --surya-teks: #a35f06;
-  --surya-lembut: #f3d9a8;
-  --darat: #ddd5c2;
-  --laut: #ebe6da;
-  --sorot: #2556a8;
-  /* skala urut peta (divalidasi ordinal) */
-  --skala-1: #d49c42;
-  --skala-2: #bd7b22;
-  --skala-3: #985813;
-  --skala-4: #6b3a0a;
-  --serif: "Young Serif", Georgia, serif;
-  --huruf: "Manrope Variable", system-ui, sans-serif;
-  --mono: "Spline Sans Mono Variable", ui-monospace, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --kertas: #0f1522;
-    --kertas-2: #161e2f;
-    --kertas-3: #1f293d;
-    --tinta: #ece6d6;
-    --tinta-2: #bfc3cc;
-    --samar: #8f97a6;
-    --garis: #263049;
-    --garis-kuat: #3a4663;
-    --surya: #f2b44a;
-    --surya-teks: #f6c46b;
-    --surya-lembut: #4b3712;
-    --darat: #243049;
-    --laut: #121a2a;
-    --sorot: #8ab4ff;
-    --skala-1: #7d4b14;
-    --skala-2: #b06e1f;
-    --skala-3: #de9c3c;
-    --skala-4: #f6cf87;
-  }
+  --kertas: #ffd84a;
+  --kertas-2: #fff6c8;
+  --kertas-3: #ffe98f;
+  --tinta: #141414;
+  --tinta-2: #3d3510;
+  --samar: #55491a;
+  --garis: #e6c94f;
+  --garis-kuat: #8f7a2a;
+  --surya: #f08c00;
+  --surya-teks: #1f4fbf;
+  --surya-lembut: #ffe27a;
+  --darat: #f2e4a6;
+  --laut: #fff6c8;
+  --sorot: #1f4fbf;
+  --bayang: #141414;
+  /* skala urut peta: biru teduh, makin gelap makin lambat (divalidasi ordinal di atas --laut) */
+  --skala-1: #7fa9dd;
+  --skala-2: #4f82c8;
+  --skala-3: #2a5aa3;
+  --skala-4: #15346b;
+  --serif: "Syne", "Arial Black", sans-serif;
+  --huruf: "Karla", system-ui, sans-serif;
+  --mono: "Karla", system-ui, sans-serif;
 }
 
 *,
@@ -95,23 +74,28 @@ input {
 h1,
 h2 {
   font-family: var(--serif);
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  /* bayangan pendek tepat di bawah huruf, seperti benda di tengah hari */
+  text-shadow: 0 0.07em 0 rgb(20 20 20 / 0.16);
 }
 h1 {
   margin: 14px 0 0;
-  font-size: clamp(40px, 6.6vw, 84px);
+  font-size: clamp(30px, 6.6vw, 84px);
   line-height: 1.02;
   max-width: 17ch;
 }
 h1 em,
 h2 em {
+  /* yang disorot justru tidak punya bayangan */
   font-style: normal;
   color: var(--surya-teks);
+  text-shadow: none;
 }
 h2 {
   margin: 8px 0 0;
-  font-size: clamp(32px, 4.6vw, 54px);
+  font-size: clamp(26px, 4.6vw, 54px);
   line-height: 1.05;
 }
 
@@ -558,8 +542,10 @@ main,
 .peta {
   position: relative;
   margin-top: 14px;
+  border: 2px solid var(--bayang);
   border-radius: 16px;
   background: var(--laut);
+  box-shadow: 0 8px 0 var(--bayang);
 }
 .wilayah {
   cursor: pointer;
@@ -683,4 +669,28 @@ main,
   .kepala nav a[href="#tentang"] {
     display: none;
   }
+}
+
+/* ---------- panel di bawah terik ---------- */
+.grafik {
+  padding: 10px 12px 6px;
+  border: 2px solid var(--bayang);
+  border-radius: 16px;
+  background: var(--kertas-2);
+  box-shadow: 0 8px 0 var(--bayang);
+}
+.jam-surya svg {
+  border-radius: 50%;
+  box-shadow: 0 8px 0 var(--bayang);
+}
+.combo input,
+.saran {
+  background: var(--kertas-2);
+  border-width: 2px;
+}
+.combo input {
+  box-shadow: 0 5px 0 var(--bayang);
+}
+body {
+  font-variant-numeric: tabular-nums;
 }

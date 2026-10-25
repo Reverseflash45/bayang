@@ -19,8 +19,9 @@ semuanya langsung di peramban dari rumus posisi matahari.
 - **Kenapa dua kali?** Deklinasi matahari sepanjang tahun dibandingkan pita lintang
   Indonesia.
 - **Terbit dan terbenam** sepanjang tahun, dengan siang terpanjang dan terpendek.
-- Setiap daerah punya tautan sendiri (`#daerah=kota-pontianak`). Mode gelap mengikuti
-  sistem.
+- Setiap daerah punya tautan sendiri (`#daerah=kota-pontianak`).
+- Tampilan siang bolong: latar kuning silau, panel dengan bayangan hitam jatuh tegak
+  lurus ke bawah seperti benda di tengah hari.
 
 ## Perhitungan
 
@@ -41,7 +42,8 @@ utama diterbitkan BMKG setiap tahun. **Jangan menatap matahari secara langsung.*
 
 ## Warna
 
-Peta memakai skala urut satu rona matahari, divalidasi terhadap latar terang dan gelap.
+Peta memakai skala urut satu rona biru teduh (#7fa9dd → #15346b), divalidasi ordinal
+terhadap panel peta #fff6c8.
 
 ## Menjalankan
 
