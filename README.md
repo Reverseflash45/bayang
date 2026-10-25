@@ -2,7 +2,7 @@
 
 ![Bayang: dua kali setahun, bayanganmu hilang](public/og.png)
 
-**[Buka Bayang](https://bayang-id.vercel.app)**
+**[Buka Bayang](https://bayang.raffstw.my.id)**
 
 Dua kali setahun matahari tepat di atas kepala dan benda yang berdiri tegak tidak punya
 bayangan. Bayang menghitung tanggal dan jamnya untuk 514 kabupaten/kota di Indonesia,
