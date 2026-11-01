@@ -231,6 +231,20 @@ main,
   display: block;
   margin-top: 6px;
 }
+.tetangga {
+  margin: 20px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--garis-kuat);
+  max-width: 60ch;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--samar);
+}
+.tetangga a {
+  color: var(--tinta);
+  text-underline-offset: 3px;
+}
+
 .judul-grafik {
   margin: 0;
   font-size: 14px;

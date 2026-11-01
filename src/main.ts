@@ -26,6 +26,8 @@ import {
   zona,
 } from "./data";
 import { selisihHari } from "./matahari";
+import { htmlTetangga } from "./tetangga";
+
 import { esc, gambarJamSurya, gambarPeta, grafikBayangan, grafikDeklinasi, grafikWaktu, muatPeta, teksBacaan, warnaSkala, type Peta } from "./vis";
 
 const $ = <T extends Element = HTMLElement>(s: string) => document.querySelector<T>(s)!;
@@ -59,7 +61,9 @@ function gambarPembuka() {
   const th = ini.tahun;
   $("[data-judul-grafik]").textContent = `Panjang bayangan tengah hari di ${pilihan.nama}, ${th}`;
   grafikBayangan($("#grafik-bayangan"), pilihan, th, kejadianTahun(pilihan, th), ini);
+  $("[data-tetangga]").innerHTML = htmlTetangga(pilihan.id, pilihan.nama, "bayang");
 }
+
 
 /* ---------- simulasi ---------- */
 const geserTanggal = $<HTMLInputElement>("#geser-tanggal");
