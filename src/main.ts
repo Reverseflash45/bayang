@@ -237,12 +237,32 @@ function gambarTerbit() {
 }
 
 /* ---------- pilih daerah ---------- */
+/* Bagian di bawah layar pertama baru digambar saat hampir terlihat, lalu ikut digambar ulang seperti biasa.
+   Menggambar semuanya sekaligus membuat pembukaan halaman macet di HP. */
+const tampak = new Set<() => void>();
+const bilaTampak = (gambar: () => void) => () => {
+  if (tampak.has(gambar)) gambar();
+};
+function amati(sel: string, gambar: () => void) {
+  const mulai = () => {
+    tampak.add(gambar);
+    gambar();
+  };
+  if (!("IntersectionObserver" in window)) return mulai();
+  const io = new IntersectionObserver(
+    (isi) => {
+      if (!isi.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      mulai();
+    },
+    { rootMargin: "250px 0px" },
+  );
+  io.observe($(sel));
+}
+
 function gambarSemua() {
   gambarPembuka();
-  gambarSimulasi();
-  gambarPetaIndonesia();
-  gambarKenapa();
-  gambarTerbit();
+  [gambarSimulasi, gambarPetaIndonesia, gambarKenapa, gambarTerbit].forEach((f) => bilaTampak(f)());
 }
 
 function pilihDaerah(d: Daerah, gulir = false) {
@@ -326,19 +346,20 @@ new ResizeObserver(([e]) => {
   tunda = requestAnimationFrame(gambarSemua);
 }).observe(document.querySelector("main")!);
 // Warna peta diambil dari variabel CSS, jadi gambar ulang saat tema sistem berganti.
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", gambarPetaIndonesia);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", bilaTampak(gambarPetaIndonesia));
 
 /* ---------- mulai ---------- */
 masuk.value = pilihan.nama;
 simAwal();
 gambarPembuka();
-gambarSimulasi();
-gambarKenapa();
-gambarTerbit();
+amati("#simulasi", gambarSimulasi);
+amati("#peta", gambarPetaIndonesia);
+amati("#kenapa", gambarKenapa);
+amati("#grafik-terbit", gambarTerbit);
 muatPeta()
   .then((p) => {
     peta = p;
-    gambarPetaIndonesia();
+    bilaTampak(gambarPetaIndonesia)();
   })
   .catch(() => {
     $("#peta-indonesia").innerHTML = `<p class="gagal">Peta gagal dimuat. Muat ulang halaman.</p>`;
