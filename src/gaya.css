@@ -708,3 +708,20 @@ main,
 body {
   font-variant-numeric: tabular-nums;
 }
+
+/* Pesan ruang hasil di pembuka sebelum skrip mengisinya, supaya tidak ada geseran tata letak.
+   Angkanya dari tinggi setelah terisi: blok teks ~290 px (337–359 px di layar sempit), grafik 235/280 px. */
+.hasil-utama:has([data-tanggal]:empty) {
+  min-height: 290px;
+}
+#grafik-bayangan:empty {
+  height: 280px;
+}
+@media (max-width: 520px) {
+  .hasil-utama:has([data-tanggal]:empty) {
+    min-height: 337px;
+  }
+  #grafik-bayangan:empty {
+    height: 235px;
+  }
+}
