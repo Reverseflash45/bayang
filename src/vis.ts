@@ -1,5 +1,6 @@
 import type { FeatureCollection, Geometry, MultiLineString } from "geojson";
-import { geoMercator, geoPath } from "d3-geo";
+import { geoMercator } from "d3-geo";
+import { jalurDatar, titikSudut } from "./datar";
 import { scaleLinear } from "d3-scale";
 import { area, curveMonotoneX, line } from "d3-shape";
 import { feature, mesh } from "topojson-client";
@@ -232,12 +233,12 @@ export function gambarPeta(
 ): { min: number; maks: number } {
   const lebar = Math.max(300, wadah.clientWidth);
   const tepi = lebar < 560 ? 8 : 16;
-  const proyeksi = geoMercator().fitWidth(lebar - 2 * tepi, peta.darat);
-  const [[x0, y0], [, y1]] = geoPath(proyeksi).bounds(peta.darat);
+  const proyeksi = geoMercator().fitWidth(lebar - 2 * tepi, titikSudut(peta.darat));
+  const [[x0, y0], [, y1]] = jalurDatar(proyeksi).bounds(peta.darat);
   const [tx, ty] = proyeksi.translate();
   proyeksi.translate([tx - x0 + tepi, ty - y0 + tepi]);
   const tinggi = Math.ceil(y1 - y0 + 2 * tepi);
-  const jalur = geoPath(proyeksi);
+  const jalur = jalurDatar(proyeksi);
   const angka = [...nilai.values()];
   const min = Math.min(...angka);
   const maks = Math.max(...angka);
